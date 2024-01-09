@@ -1,51 +1,42 @@
-// skillData=[
-//   {
-//   skil:"html&css",
-//   icon:"✌",
-//   color:"red"
-// },
-// {
-//   skil:"JS",
-//   icon:"👍",
-//   color:"blue"
-// },
-// {
-//   skil:"React",
-//   icon:"😊",
-//   color:"yellow"
-// },
-
-// ]
-
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
+const skillData=[
+  {
+  skill:"html&css",
+  icon:"✌",
+  color:"red"
+},
+{
+  skill:"JS",
+  icon:"👍",
+  color:"blue"
+},
+{
+  skill:"React",
+  icon:"😊",
+  color:"yellow"
+},
+
+]
 
 function App() {
   return (
     <div className="card">
       <Avatar />
-      
-        <Intro />
+      <Intro />
         {/* Should contain one Skill component
         for each web dev skill that you have,
         customized with props */}
-        <div className="skill-list">
-        <SkillList />   
-        
-        </div>
-        
-       
+      <SkillList />   
     </div>
   );
 }
 
 function Avatar (){
-return <div >
+return <div>
   <img className="avatar" src="/image/btmn.png" alt ="Batman"></img>
- 
-</div>
-  
+</div>  
 }
 function Intro (){
   return (
@@ -53,33 +44,24 @@ function Intro (){
     <h1>Sen ✌</h1>
     <p className="data">Some text about me</p>
     </div>
-    
-    )
+  )
 }
 function SkillList (){
-  return <div className="skill-list">
-    <Skill skill="react" emoji="👍" color="red"/>
-    <Skill skill="html&css" emoji="✌"color="green"/>
-    <Skill skill="JavaScript" emoji="😊"color="yellow" />
-    <Skill skill="Java" emoji="😊"color="blue" />
-        </div>
-  // console.log(props);
-  // return (
-  //   <p className="skill" style={{backgroundColor:props.color}}>{props.html}</p> 
-  //   )
+  return (
+    <ul className="skill-list">
+      {skillData.map((skill)=><Skill skillObj={skill} />)}
+    </ul>
+  )
 }
 function Skill(props){
   console.log(props);
   return(
-    <div className="skill" style={{backgroundColor:props.color}}>
-      
-      <span >{props.skill}</span>
-      <span>{props.emoji}</span>  
-      </div>
-    
+    <li className="skill" style={{backgroundColor:props.skillObj.color}}>
+      <span >{props.skillObj.skill}</span>
+      <span>{props.skillObj.emoji}</span>  
+    </li> 
   ) 
 }
-
 
 const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
